@@ -2,22 +2,17 @@ var app = new Vue({
   el: '#app',
   data: {
 
-    
-    items: [
-        { message: 'Foo' },
-        { message: 'Bar' }
-    ],
-
     archives: [
         {
             version: "1.9.4",
             releaseNote: "releaseNote releaseNote",
             updatedAt: "2018/05/29 12:00:00",
+            latest: false,
             apps: [
                 {
                     name: "dev",
                     src: "",
-                    btnClass: "btn-warning",
+                    btnClass: "btn-warning",                    
                 },
                 {
                     name: "fut",
@@ -60,6 +55,7 @@ var app = new Vue({
             version: "1.9.3",
             releaseNote: "releaseNote releaseNote",
             updatedAt: "2018/05/29 12:00:00",
+            latest: true,
             apps: [
                 {
                     name: "dev",

@@ -16,48 +16,58 @@
 
 <body>
 
-    
 
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal">
-            <i class="fab fa-app-store-ios"></i>iOS app archives</h5>
-        <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#">
-                <i class="fab fa-android"></i>Android</a>
-            <a class="p-2 text-dark" href="#">
-                <i class="fab fa-app-store-ios"></i>iOS</a>
-        </nav>
-    </div>
-    
+
+
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+                <h5 class="my-0 mr-md-auto font-weight-normal">
+                    <i class="fab fa-app-store-ios"></i>iOS app archives</h5>
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-dark" href="#">
+                        <i class="fab fa-android"></i>Android</a>
+                    <a class="p-2 text-dark" href="#">
+                        <i class="fab fa-app-store-ios"></i>iOS</a>
+                </nav>
+            </div>
+        
+
     <div class="container">
+
 
         <div id="app">
 
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Master</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Develop</a>
-                </li>
-            </ul>
-            <div v-for="archive in archives" class="my-3 p-3 bg-white rounded box-shadow">
-                <h6 class="border-bottom border-gray pb-2 mb-0"><span class="badge badge-secondary">{{archive.version}}</span></h6>
+                <div class="card" v-for="archive in archives" style="margin-bottom:2em;margin-top:2em;">
+                        <div class="card-header">
+                            <h4>ver {{archive.version}}</h4>                            
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{{archive.updatedAt}} <span class="badge badge-danger" v-if="archive.latest">強制アップデートバージョン</span></h5>
+                          <p class="card-text">{{archive.releaseNote}}</p>
+                          <template v-for="app in archive.apps">
+                                <button type="button" class="btn btn-block" v-bind:class="app.btnClass">{{app.name}}</button>
+                            </template>
+                       
+                        </div>
+                      </div>
 
-                <div class="media text-muted pt-3">
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        {{archive.updatedAt}}
-                    </p>
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            {{archive.releaseNote}}
+
+
+            <!-- <div v-for="archive in archives" class="my-3 p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">ver {{archive.version}}
+                    <span class="badge badge-danger" v-if="archive.latest">強制アップデートバージョン</span>
+                </h6>
+                <div class=" text-muted">
+                        <p class="media-body small">
+                            {{archive.updatedAt}}
                         </p>
-    
-                </div>
+                        <p class="media-body small border-bottom border-gray">
+                                {{archive.releaseNote}}
+                            </p>
+                    </div>
                 <template v-for="app in archive.apps">
                     <button type="button" class="btn btn-block" v-bind:class="app.btnClass">{{app.name}}</button>
                 </template>
-                
-            </div>
+            </div> -->
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
